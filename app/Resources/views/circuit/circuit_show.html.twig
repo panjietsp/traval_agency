@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+<h1>Détails du circuit</h1>
+
+<div class="circuit_details">
+
+ <h2>{{ circuit.id}} : {{ circuit.description }} </h2>
+<p>Départ de{{circuit.villeDepart}} pour  {{ circuit.dureeCircuit}} jours. de voyage à travers le {{ circuit.paysDepart}}, pour terminer à {{ circuit.villeArrivee}}.</p>
+
+<p>Etapes :</p>
+        <table>
+          <tr>
+            <th>Numéro</th>
+            <th>Ville</th>
+            <th>Nombre jours</th>
+            <th></th>
+          </tr>
+</thead>
+{% for etape in circuit.etapes %}
+<tr>
+  <td>{{etape.numeroEtape}}</td>
+  <td>{{etape.villeEtape}}</td> 
+  <td>{{etape.nombreJours}}  j.</td>
+</tr>
+{% endfor %}
+</table>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+
+ {% block navigation %}
+	                 <ol class="breadcrumb">
+	  						<li><a href="{{ path('zhuye') }}"> Home_Circuits</a></li>
+	  						<li class="active">Etapes de Circuit_{{circuit.id}}</li>
+					 </ol>
+{% endblock %} {# navigation #}
+             
+{% block main %}
+
+<h1>Nos etapes</h1>
+
+<div class="etape">
+<p>Départ de <b>{{circuit.villeDepart}}</b> pour  <b>{{ circuit.dureeCircuit}}</b> jours. de voyage à travers le <b>{{ circuit.paysDepart}}</b>, pour terminer à <b>{{ circuit.villeArrivee}}</b>.</p>
+
+ <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>numeroEtape</th>
+            <th>villeEtape</th>
+            <th>nombreJours</th>
+            <th>operation</th>
+          </tr>
+        </thead>
+        
+{% for etape in circuit.getEtapes() %}
+
+       <tbody>
+          <tr>
+            <td>{{etape.numeroEtape}} </td>
+            <td>{{etape.villeEtape}}</td>
+            <td>{{etape.nombreJours}}</td>
+		    <td>
+			    <span class="badge">
+			    	<a href="{{ path('delete_etape', {circuitId: circuit.id, etapeId:etape.getId() }) }}"><font color="white"> delete</font> 
+			    	</a>
+			    </span>
+		    </td>
+          </tr>
+        </tbody>
+       
+{% endfor %}
+
+</table>
+
+
+
+<button type="button" class="btn btn-block"><a href="{{ path('add_etape', {circuitId: circuit.id }) }}"> add a etape </a></button>
+</div>
+
+{% endblock %}
+

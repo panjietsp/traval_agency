@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+ {% block navigation %}
+	                 <ol class="breadcrumb">
+	  						<li class="active">Home_Circuits</li>
+					 </ol>
+{% endblock %} {# navigation #}
+             
+{% block main %}
+
+<h1>Nos circuits:</h1>
+
+<div class="circuit">
+<ul class="list-group">
+{% for circuit in circuits %}
+<li class="list-group-item">
+	<span class="badge"><a href="{{ path('delete_circuit', {circuitId: circuit.getId() }) }}"><font color="white"> delete</font>   </a></span>
+	{{circuit.id}} : <a href="{{ path('zhue', { circuitId: circuit.id }) }}"> {{ circuit.description }} </a>
+</li>
+{% endfor %}
+</ul>
+
+<button type="button" class="btn btn-block"><a href="{{ path('add_circuit') }}">添加circuit</a></button>
+<button type="button" class="btn btn-block"><a href="{{ path('homepage') }}">HomePage</a></button>
+
+<button type="button" class="btn btn-block"><a href="{{ path('fos_user_registration_register') }}">添加User</a></button>
+</div>
+
+
+
+{% endblock %}
